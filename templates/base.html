@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--viewport - the visible area of browser-->
+    <!--content value matches the actual screen width-->
+    <!--initial scale - set to start at a normal zoom-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASE Portfolio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="page-wrapper">
+    <header>
+        <h1><b>ASE Flask Portfolio</b></h1>
+        <h3>This page highlights my work in ASE class</h3>
+        <nav>
+            <ul class="navbar">
+                <!--Explain this part to students as well-->
+                <li class="{% if request.path == url_for('home') %}active{% endif %}">
+                    <a href="{{ url_for('home') }}">Home</a>
+                </li>
+                <li class="{% if request.path == url_for('about') %}active{% endif %}">
+                    <a href="{{ url_for('about') }}">About Me</a>
+                </li>
+                <li class="{% if request.path == url_for('rectangle') %}active{% endif %}">
+                    <a href="{{ url_for('rectangle') }}">Rectangle</a>
+                </li>
+                <li class="{% if request.path == url_for('weather') %}active{% endif %}">
+                    <a href="{{ url_for('weather') }}">Weather</a>
+                </li>
+
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</div>
+</body>
+</html>

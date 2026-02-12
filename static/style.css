@@ -1,0 +1,222 @@
+/* --- Global Resets & Typography --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f0f2f5; /* Light grey background for the window */
+    color: #333;
+    line-height: 1.6;
+}
+
+/* --- Layout Container --- */
+/* Matches <div class="page-wrapper"> */
+.page-wrapper {
+    max-width: 900px;
+    margin: 0 auto; /* Centers the container */
+    background-color: #ffffff;
+    min-height: 100vh; /* Ensures full height */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05); /* Subtle drop shadow */
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Header Styling --- */
+header {
+    background-color: #2c3e50; /* Dark Slate Blue */
+    color: #ecf0f1;
+    padding: 2rem 1rem;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+}
+
+/* Remove default bolding from <b> tag inside h1 so it doesn't look too heavy,
+   or keep it if you prefer extra weight. */
+header h1 b {
+    font-weight: 700;
+}
+
+header h3 {
+    font-weight: 300;
+    font-size: 1.1rem;
+    color: #bdc3c7; /* Lighter grey for subtitle */
+    margin-bottom: 2rem;
+}
+
+/* --- Navigation --- */
+/* Matches <ul class="navbar"> */
+.navbar {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Space between links */
+    padding: 0;
+}
+
+.navbar li {
+    display: inline-block;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.navbar a:hover {
+    background-color: #34495e; /* Slightly lighter header color on hover */
+}
+
+/* Logic for the active page styling */
+.navbar li.active a {
+    background-color: #e74c3c; /* Accent color (Red/Orange) for current page */
+}
+
+/* --- Main Content Area --- */
+main {
+    padding: 2rem;
+    flex: 1; /* Pushes content to fill space */
+}
+
+/* Matches <div class="centered-justified"> */
+.centered-justified {
+    max-width: 600px;
+    margin: 3rem auto; /* Vertical spacing and horizontal centering */
+    text-align: center; /* Centers the container contents */
+    padding: 2rem;
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+}
+
+.centered-justified p {
+    font-size: 1.2rem;
+    color: #555;
+    /* 'Justified' text can look weird on web, but if strictly required: */
+    /* text-align: justify; */
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    .navbar {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    main {
+        padding: 1rem;
+    }
+}
+/* --- Image Styling --- */
+.hero-image {
+    max-width: 500px; /* Limits the size so it doesn't dominate the screen */
+    width: 100%;      /* Ensures it shrinks on mobile devices */
+    height: auto;     /* Maintains aspect ratio */
+    border-radius: 15px; /* Adds nice rounded corners */
+    margin-bottom: 1.5rem; /* Adds space between the image and the text */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional: adds a slight pop */
+}
+
+/* The Main Container Card */
+.form-container {
+    background-color: #ffffff;
+    max-width: 500px;
+    margin: 50px auto; /* Centers the card vertically and horizontally */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.form-title {
+    margin-bottom: 20px;
+    color: #2c3e50;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+/* Container Layout */
+.form-wrapper {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.form-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Inputs */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box; /* Keeps padding inside width */
+}
+
+/* --- BUTTON STYLES (Modern & Trendy) --- */
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.btn {
+    flex: 1; /* Makes buttons equal width */
+    padding: 12px 20px;
+    border: none;
+    border-radius: 50px; /* Pill shape */
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* Gradient Colors */
+.btn-area {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Purple */
+}
+
+.btn-perimeter {
+    background: linear-gradient(135deg, #2af598 0%, #009efd 100%); /* Teal/Blue */
+}
+
+/* Hover Effects */
+.btn:hover {
+    transform: translateY(-3px); /* Lifts button up */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn:active {
+    transform: translateY(-1px);
+}

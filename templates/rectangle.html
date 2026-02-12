@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="form-wrapper">
+    <p class="form-title">Calculate the area and perimeter of a rectangle</p>
+
+    <form action="{{ url_for('rectangle') }}" method="POST">
+
+        {{ form.hidden_tag() }}
+
+        <div class="form-group">
+            {{ form.length.label }}
+            {{ form.length(size=20, placeholder="Enter length", class="form-input") }}
+
+            {% if form.length.errors %}
+                <span style="color: red;">
+                {% for error in form.length.errors %}
+                    {{ error }}
+                {% endfor %}
+                </span>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            {{ form.width.label }}
+            {{ form.width(size=20, placeholder="Enter width", class="form-input") }}
+
+            {% if form.width.errors %}
+                <span style="color: red;">
+                {% for error in form.width.errors %}
+                    {{ error }}
+                {% endfor %}
+                </span>
+            {% endif %}
+        </div>
+
+        <br>
+
+        <div class="button-group">
+            {{ form.area(class="btn btn-area") }}
+            {{ form.perimeter(class="btn btn-perimeter") }}
+        </div>
+
+    </form>
+
+    <div class="results-section">
+        {% if area is not none or perimeter is not none %}
+          <hr>
+        {% endif %}
+
+        {% if area is not none %}
+            <h3>Calculated Area: <strong>{{ area }}</strong></h3>
+        {% endif %}
+
+        {% if perimeter is not none %}
+            <h3>Calculated Perimeter: <strong>{{ perimeter }}</strong></h3>
+        {% endif %}
+
+    </div>
+  </div>
+</div>
+{% endblock %}
