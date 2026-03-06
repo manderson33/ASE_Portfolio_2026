@@ -1,222 +1,497 @@
-/* --- Global Resets & Typography --- */
-* {
-    box-sizing: border-box;
+/* =========================================================
+   ASE Flask Portfolio - Dark Animated Nav + Modern UI
+   - Nav bar like your example (dark pill + glowing active tab)
+   - Clean modern buttons (matching the nav)
+   - Consistent forms, tables, cards for ALL pages
+   ========================================================= */
+
+/* ---------- Theme Tokens ---------- */
+:root{
+  --bg: #0b0f14;                /* page background (dark) */
+  --surface: #101722;           /* main app surface */
+  --card: #121b28;              /* cards */
+  --border: rgba(255,255,255,.08);
+
+  --text: #e7eef8;
+  --muted: rgba(231,238,248,.72);
+
+  --nav: #1b1f25;               /* nav bar dark */
+  --nav-2: #15181d;
+
+  --glow-1: #00d4ff;            /* cyan glow */
+  --glow-2: #3b82f6;            /* blue glow */
+
+  --shadow: 0 18px 45px rgba(0,0,0,.45);
+  --shadow-soft: 0 10px 24px rgba(0,0,0,.35);
+
+  --radius-lg: 18px;
+  --radius: 14px;
+  --radius-sm: 10px;
+}
+
+/* ---------- Reset ---------- */
+*{ box-sizing:border-box; margin:0; padding:0; }
+html, body{ height:100%; }
+
+body{
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: radial-gradient(1000px 500px at 50% -10%, rgba(0,212,255,.18), transparent 60%),
+              radial-gradient(900px 400px at 85% 0%, rgba(59,130,246,.16), transparent 55%),
+              var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* ---------- Layout Wrapper ---------- */
+.page-wrapper{
+  max-width: 980px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0)) , var(--surface);
+  box-shadow: var(--shadow);
+  display:flex;
+  flex-direction:column;
+  border-left: 1px solid rgba(255,255,255,.04);
+  border-right: 1px solid rgba(255,255,255,.04);
+}
+
+/* ---------- Header ---------- */
+header{
+  text-align:center;
+  padding: 28px 18px 18px 18px;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  background:
+    radial-gradient(900px 240px at 50% 0%, rgba(0,212,255,.12), transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0));
+}
+
+header h1{
+  font-size: 2.2rem;
+  letter-spacing: .4px;
+  margin-bottom: 6px;
+}
+
+header h3{
+  font-weight: 500;
+  font-size: 1.05rem;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+/* =========================================================
+   NAV BAR (like your image)
+   - Dark rounded container
+   - Links inside look like tabs
+   - active tab glows cyan/blue
+   ========================================================= */
+
+nav{
+  display:flex;
+  justify-content:center;
+}
+
+/* UL */
+.navbar{
+  list-style:none;
+  display:flex;
+  gap: 8px;
+  padding: 10px;
+  margin: 0;
+  background: linear-gradient(180deg, var(--nav), var(--nav-2));
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,.35);
+}
+
+/* LI */
+.navbar li{
+  position: relative;
+}
+
+/* A (tab) */
+.navbar a{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width: 110px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  text-decoration:none;
+  color: rgba(231,238,248,.90);
+  font-weight: 650;
+  letter-spacing: .2px;
+  transition: transform .15s ease, background .20s ease, color .20s ease, box-shadow .20s ease;
+  background: transparent;
+}
+
+/* Hover */
+.navbar a:hover{
+  background: rgba(255,255,255,.06);
+  transform: translateY(-1px);
+}
+
+/* Active tab */
+.navbar li.active a{
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--glow-2), var(--glow-1));
+  box-shadow:
+    0 10px 22px rgba(0,212,255,.20),
+    0 10px 22px rgba(59,130,246,.18);
+}
+
+/* subtle “glow ring” behind the active tab */
+.navbar li.active a::after{
+  content:"";
+  position:absolute;
+  inset: -6px;
+  border-radius: 14px;
+  background: radial-gradient(circle at 30% 30%, rgba(0,212,255,.35), transparent 60%),
+              radial-gradient(circle at 70% 60%, rgba(59,130,246,.28), transparent 65%);
+  filter: blur(10px);
+  z-index: -1;
+}
+
+/* Mobile nav stacks nicely */
+@media (max-width: 700px){
+  .navbar{
+    flex-wrap: wrap;
+    justify-content:center;
+  }
+  .navbar a{
+    min-width: 140px;
+  }
+}
+
+/* ---------- Main ---------- */
+main{
+  flex:1;
+  padding: 26px 18px 34px 18px;
+}
+
+/* ---------- Generic Containers / Cards ---------- */
+.container{
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.card{
+  background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01)), var(--card);
+  border: 1px solid rgba(255,255,255,.07);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  padding: 22px;
+}
+
+/* ---------- Home Page Image ---------- */
+.top-image,
+.hero-image{
+  width: min(460px, 100%);
+  display:block;
+  margin: 0 auto 16px auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255,255,255,.08);
+  box-shadow: 0 14px 35px rgba(0,0,0,.35);
+}
+
+/* ---------- Text Block ---------- */
+.centered-justified{
+  max-width: 740px;
+  margin: 0 auto;
+  text-align:left;
+  color: rgba(231,238,248,.90);
+  line-height: 1.75;
+  font-size: 1.05rem;
+}
+
+/* =========================================================
+   BUTTONS (match nav style)
+   - Clean rectangular (not pill)
+   - subtle gradient + glow on hover
+   ========================================================= */
+
+button,
+input[type="submit"]{
+  padding: 12px 16px;
+  border-radius: 10px;                 /* clean rectangle */
+  border: 1px solid rgba(255,255,255,.12);
+  background: linear-gradient(135deg, rgba(59,130,246,.95), rgba(0,212,255,.90));
+  color: #ffffff;
+  font-weight: 750;
+  letter-spacing: .2px;
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .2s ease, filter .2s ease;
+}
+
+button:hover,
+input[type="submit"]:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(0,212,255,.22), 0 10px 22px rgba(59,130,246,.18);
+  filter: brightness(1.02);
+}
+
+button:active,
+input[type="submit"]:active{
+  transform: translateY(0);
+  filter: brightness(.98);
+}
+
+/* optional secondary + danger */
+.btn-secondary{
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.14);
+}
+.btn-secondary:hover{
+  box-shadow: 0 10px 20px rgba(0,0,0,.35);
+}
+
+.btn-danger{
+  background: linear-gradient(135deg, #ff5f6d, #ffc371);
+  border-color: rgba(255,255,255,.12);
+}
+
+/* =========================================================
+   FORMS (WTForms-friendly)
+   ========================================================= */
+
+form{ width:100%; }
+
+label{
+  display:block;
+  font-weight: 700;
+  color: rgba(231,238,248,.92);
+  margin-bottom: 6px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+select,
+textarea{
+  width:100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.04);
+  color: var(--text);
+  font-size: 1rem;
+  transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+  outline:none;
+  border-color: rgba(0,212,255,.55);
+  box-shadow: 0 0 0 4px rgba(0,212,255,.16);
+  background: rgba(255,255,255,.06);
+}
+
+/* =========================================================
+   ALERTS
+   ========================================================= */
+.alert{
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.05);
+  color: rgba(231,238,248,.92);
+  font-weight: 650;
+}
+
+.alert-error{
+  border-color: rgba(255,95,109,.25);
+  background: rgba(255,95,109,.12);
+  color: #ffd6d9;
+}
+
+.alert-success{
+  border-color: rgba(46,204,113,.25);
+  background: rgba(46,204,113,.10);
+  color: #d6ffe8;
+}
+
+/* =========================================================
+   TABLES (neat, modern)
+   ========================================================= */
+table{
+  width:100%;
+  border-collapse: collapse;
+  border-radius: 14px;
+  overflow:hidden;
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(255,255,255,.03);
+}
+
+th, td{
+  padding: 12px 14px;
+  text-align:left;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+
+th{
+  background: rgba(255,255,255,.06);
+  color: rgba(231,238,248,.92);
+  font-weight: 900;
+}
+
+tr:nth-child(even) td{
+  background: rgba(255,255,255,.02);
+}
+
+tr:last-child td, tr:last-child th{
+  border-bottom:none;
+}
+
+/* =========================================================
+   WEATHER PAGE HELPERS (optional)
+   Works with your weather card + table layout
+   ========================================================= */
+.weather-wrapper{
+  max-width: 760px;
+  margin: 0 auto;
+  display:flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.weather-main-card,
+.weather-result-card{
+  background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01)), var(--card);
+  border: 1px solid rgba(255,255,255,.07);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  padding: 22px;
+}
+
+.weather-title{ margin-bottom: 6px; }
+.weather-subtitle{ color: var(--muted); margin-bottom: 14px; }
+
+.weather-error{
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,95,109,.25);
+  background: rgba(255,95,109,.12);
+  color: #ffd6d9;
+  font-weight: 650;
+}
+
+/* ---------- Small screens ---------- */
+@media (max-width: 640px){
+  header h1{ font-size: 1.6rem; }
+  main{ padding: 18px 12px 24px 12px; }
+  .page-wrapper{ box-shadow: none; border-left:none; border-right:none; }
+}
+/* Align input + button on same row */
+.form-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* Input expands to fill space */
+.weather-input {
+  flex: 1;
+}
+
+/* Button keeps its natural width */
+.weather-button {
+  white-space: nowrap;
+}
+/* =========================
+   Responsive site pack
+   ========================= */
+
+/* 1) Base responsiveness */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Make sure the wrapper doesn't cause horizontal scrolling */
+.page-wrapper,
+main,
+.container,
+.card {
+  max-width: 100%;
+}
+
+/* 2) Tablets and below */
+@media (max-width: 900px) {
+  .page-wrapper {
     margin: 0;
-    padding: 0;
+    border-left: none;
+    border-right: none;
+  }
+
+  main {
+    padding: 18px 14px 24px 14px;
+  }
 }
 
-body {
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    background-color: #f0f2f5; /* Light grey background for the window */
-    color: #333;
-    line-height: 1.6;
-}
-
-/* --- Layout Container --- */
-/* Matches <div class="page-wrapper"> */
-.page-wrapper {
-    max-width: 900px;
-    margin: 0 auto; /* Centers the container */
-    background-color: #ffffff;
-    min-height: 100vh; /* Ensures full height */
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05); /* Subtle drop shadow */
-    display: flex;
-    flex-direction: column;
-}
-
-/* --- Header Styling --- */
-header {
-    background-color: #2c3e50; /* Dark Slate Blue */
-    color: #ecf0f1;
-    padding: 2rem 1rem;
-    text-align: center;
-}
-
-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-    letter-spacing: 1px;
-}
-
-/* Remove default bolding from <b> tag inside h1 so it doesn't look too heavy,
-   or keep it if you prefer extra weight. */
-header h1 b {
-    font-weight: 700;
-}
-
-header h3 {
-    font-weight: 300;
-    font-size: 1.1rem;
-    color: #bdc3c7; /* Lighter grey for subtitle */
-    margin-bottom: 2rem;
-}
-
-/* --- Navigation --- */
-/* Matches <ul class="navbar"> */
-.navbar {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    gap: 20px; /* Space between links */
-    padding: 0;
-}
-
-.navbar li {
-    display: inline-block;
-}
-
-.navbar a {
-    text-decoration: none;
-    color: #ffffff;
-    font-weight: 600;
-    padding: 8px 16px;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-}
-
-.navbar a:hover {
-    background-color: #34495e; /* Slightly lighter header color on hover */
-}
-
-/* Logic for the active page styling */
-.navbar li.active a {
-    background-color: #e74c3c; /* Accent color (Red/Orange) for current page */
-}
-
-/* --- Main Content Area --- */
-main {
-    padding: 2rem;
-    flex: 1; /* Pushes content to fill space */
-}
-
-/* Matches <div class="centered-justified"> */
-.centered-justified {
-    max-width: 600px;
-    margin: 3rem auto; /* Vertical spacing and horizontal centering */
-    text-align: center; /* Centers the container contents */
-    padding: 2rem;
-    background-color: #fff;
-    border: 1px solid #eee;
-    border-radius: 8px;
-}
-
-.centered-justified p {
-    font-size: 1.2rem;
-    color: #555;
-    /* 'Justified' text can look weird on web, but if strictly required: */
-    /* text-align: justify; */
-}
-
-/* --- Mobile Responsiveness --- */
+/* 3) Phones */
 @media (max-width: 600px) {
-    header h1 {
-        font-size: 1.8rem;
-    }
+  header h1 {
+    font-size: 1.6rem;
+  }
 
-    .navbar {
-        flex-direction: column;
-        gap: 10px;
-    }
+  header h3 {
+    font-size: 0.98rem;
+  }
 
-    main {
-        padding: 1rem;
-    }
-}
-/* --- Image Styling --- */
-.hero-image {
-    max-width: 500px; /* Limits the size so it doesn't dominate the screen */
-    width: 100%;      /* Ensures it shrinks on mobile devices */
-    height: auto;     /* Maintains aspect ratio */
-    border-radius: 15px; /* Adds nice rounded corners */
-    margin-bottom: 1.5rem; /* Adds space between the image and the text */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional: adds a slight pop */
-}
-
-/* The Main Container Card */
-.form-container {
-    background-color: #ffffff;
-    max-width: 500px;
-    margin: 50px auto; /* Centers the card vertically and horizontally */
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.form-title {
-    margin-bottom: 20px;
-    color: #2c3e50;
-    text-align: center;
-    font-size: 1.5rem;
-}
-
-/* Container Layout */
-.form-wrapper {
-    background: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    max-width: 500px;
-    margin: 0 auto;
-}
-
-.form-title {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-/* Inputs */
-.form-group {
-    margin-bottom: 15px;
-}
-
-.form-input {
-    width: 100%;
+  /* Navbar: wrap nicely */
+  .navbar {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
     padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-sizing: border-box; /* Keeps padding inside width */
+  }
+
+  /* If your nav items have fixed min-width, reduce it */
+  .navbar a {
+    min-width: 120px; /* adjust if needed */
+    padding: 10px 12px;
+    text-align: center;
+  }
+
+  /* Cards and containers: reduce padding */
+  .card,
+  .weather-main-card,
+  .weather-result-card {
+    padding: 16px;
+  }
 }
 
-/* --- BUTTON STYLES (Modern & Trendy) --- */
-.button-group {
-    display: flex;
-    justify-content: space-between;
-    gap: 15px;
-    margin-top: 10px;
+/* 4) Form row responsiveness (input + button) */
+@media (max-width: 600px) {
+  .form-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .weather-input {
+    width: 100%;
+  }
+
+  .weather-button,
+  button,
+  input[type="submit"] {
+    width: 100%;
+  }
 }
 
-.btn {
-    flex: 1; /* Makes buttons equal width */
-    padding: 12px 20px;
-    border: none;
-    border-radius: 50px; /* Pill shape */
-    color: white;
-    font-size: 1rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    transition: transform 0.2s, box-shadow 0.2s;
+/* 5) Tables: allow horizontal scroll on small screens */
+@media (max-width: 700px) {
+  .table-card,
+  .card,
+  .container {
+    overflow-x: auto;
+  }
+
+  table {
+    min-width: 520px; /* prevents columns from crushing */
+  }
 }
 
-/* Gradient Colors */
-.btn-area {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Purple */
-}
-
-.btn-perimeter {
-    background: linear-gradient(135deg, #2af598 0%, #009efd 100%); /* Teal/Blue */
-}
-
-/* Hover Effects */
-.btn:hover {
-    transform: translateY(-3px); /* Lifts button up */
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-}
-
-.btn:active {
-    transform: translateY(-1px);
-}
